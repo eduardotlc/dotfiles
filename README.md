@@ -12,5 +12,5 @@
 
 [![eslintbadge]][eslint]
 
-[eslintbadge]: https://github.com/eduardotlc/dotfiles/badges/eslint-badge.svg
+[eslintbadge]: https://github.com/eduardotlc/dotfiles/blob/main/badges/eslint-badge.svg
 [eslint]: https://eslint.org
