@@ -80,12 +80,12 @@ def create_parser():
     --------
     >>> parser = create_parser()
     >>> print(parser.prog)
-    duutils
+    dotfiles_utils
     """
     parser = argparse.ArgumentParser(
         prog="dotfiles_utils",
         add_help=False,
-        usage="python cli.py [FLAGS] [ARGUMENTS]",
+        usage="python main.py [FLAGS] [ARGUMENTS]",
         allow_abbrev=True,
     )
     parser.add_argument(
@@ -114,7 +114,7 @@ def cli_parse_groups(parser):
     >>> parser = create_parser()
     >>> test = cli_parse_groups(parser)
     >>> print(test[0].description)
-    Colors utillities related commands.
+    Images utillities related commands.
     """
     group_images = parser.add_argument_group(
         "Images",
@@ -142,18 +142,37 @@ def cli_group_images(group_images):
     --------
     >>> parser = create_parser()
     >>> test = cli_parse_groups(parser)
-    >>> img_col = test[0]
-    >>> cli_group_colors(img_col)
-    >>> gcol._group_actions[0].option_strings
-    ['--generate-pypi-badge']
+    >>> img = test[0]
+    >>> cli_group_colors(img)
+    >>> img._group_actions[0].option_strings
+    ['--generate-badge']
     """
     group_images.add_argument(
         "--generate-badge",
         nargs="*",
-        metavar=["left_icon", "output_svg", "left_color", "left_text"],
+        metavar=["left_icon", "right_text", "right_color", "output_svg", "left_color (Optional)"],
         action=ArgHandle,
         type=argtypes.check_string,
-        help="Print a simple plot with a square and text on it, with given colors.",
+        help="""
+        Generate a badge svg icon, with two separated rectangle colors, with a given icon on the
+        left rectangle, with gray background, and a given written text on the right rectangle,
+        with the given background color.
+        """,
+    )
+
+    group_images.add_argument(
+        "--generate-pypi-badge",
+        nargs="*",
+        metavar=["package_name", "output_svg"],
+        action=ArgHandle,
+        type=argtypes.check_string,
+        help="Generate a pypi badge icon svg, with the given package version on it.",
+    )
+
+    group_images.add_argument(
+        "--test",
+        action="store_true",
+        help="test",
     )
 
 
@@ -191,11 +210,21 @@ def cli_args_images(args, parser):
     """
     if args.generate_badge is not None:
         modify_template_svg(
-            template_svg="../badges/template.svg",
-            new_icon_svg=args.generate_badge[0],
-            output_svg=args.generate_badge[1],
-            color=args.generate_badge[2],
-            text=args.generate_badge[3],
+            left_icon=args.generate_badge[0],
+            right_text=args.generate_badge[1],
+            right_color=args.generate_badge[2],
+            output_path=args.generate_badge[3],
+            template_path="../badges/badge_template.svg",
+            left_color=args.generate_badge[4],
         )
+
+    if args.generate_pypi_badge is not None:
+        modify_template_svg(
+            left_icon="../bages/python.svg",
+            right_text=f"V.{args.generate_pypi_badge[0]}",
+            output_path=args.generate_pypi_badge[1],
+            right_color="#ffff00",
+        )
+        # print(args.generate_pypi_badge[0])
 
     return args

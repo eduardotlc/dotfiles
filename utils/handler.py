@@ -1,31 +1,21 @@
 import argparse
 import re
-from os import getcwd
 
 import argtypes
 from logger import LOGGER
 
 TEST_DICT = {
+    "left_icon": argtypes.check_existing_file,
+    "right_text": argtypes.check_string,
+    "right_color": argtypes.check_color,
+    "output_svg": argtypes.check_string,
+    "left_color": argtypes.check_color,
     "input_color": argtypes.check_color,
-    "pastel_factor": argtypes.check_float_range(0, 1),
-    "background_color": argtypes.check_color,
-    "text_color": argtypes.check_color,
-    "dir_path": argtypes.check_dir_path,
-    "file_extension": argtypes.check_extension,
-    "metadata_name": argtypes.check_in_list(["category", "artist", "genre", "grouping"]),
-    "files_list": argtypes.check_files_list,
-    "video_path": argtypes.check_existing_file,
-    "video_url": argtypes.check_site,
-    "video_dir_path": argtypes.check_dir_path,
-    "metadata_field": argtypes.check_in_list(["category", "artist", "genre", "grouping"]),
+    "package_name": argtypes.check_existing_pypi_version,
 }
 
 DEFAULT_DICT = {
-    "theme_name": "Dracula",
-    "dir_path": getcwd(),
-    "video_dir_path": "/home/eduardotc/Videos/p/videos",
-    "metadata_field": "all",
-    "argparse_group_name": "All",
+    "left_color": None,
 }
 
 

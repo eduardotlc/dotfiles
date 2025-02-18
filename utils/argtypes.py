@@ -507,12 +507,11 @@ def check_existing_file(arg):
     return arg
 
 
-def check_existing_pypi_package(arg):
+def check_existing_pypi_version(arg):
     try:
-        url = f"https://pypi.org/pypi/{arg}/json"
-        response = requests.get(url)
-        assert response.status_code == 200
-    except AssertionError as e:
+        latest_version = requests.get(f"https://pypi.org/pypi/{arg}/json").json()["info"]["version"]
+    except KeyError as e:
         LOGGER.error(e)
         return "repeat"
-    return arg
+
+    return latest_version
