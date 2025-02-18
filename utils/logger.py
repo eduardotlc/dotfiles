@@ -82,7 +82,8 @@ LoggerArgs: TypeAlias = LoggerLineStyle | Literal["print_next_line"]
 
 
 class ScriptLogger:
-    """Handle script messages with optional ANSI colors and stderr redirection.
+    """
+    Handle script messages with optional ANSI colors and stderr redirection.
 
     This class provides methods for formatting messages in different categories,
     such as info, warning, error, success, and debug. ANSI colors can be enabled
@@ -147,7 +148,7 @@ class ScriptLogger:
             "reset": self.ansi_dicts["RST"],
         }
 
-        _aliases = {
+        self._aliases = {
             "blue": self.ansi_dicts["BLUE"],
             "yellow": self.ansi_dicts["YLW"],
             "red": self.ansi_dicts["RED"],
@@ -170,14 +171,15 @@ class ScriptLogger:
             "light_red": self.ansi_dicts["LRED"],
         }
 
-        for k, c in _aliases.items():
+        for k, c in self._aliases.items():
             self.ansi_dicts[k] = c
 
         self.use_colors = use_colors
         self.use_stderr = use_stderr
 
     def _format_message(self, msg_type: str, message: str) -> str:
-        """Format the message with optional ANSI color.
+        """
+        Format the message with optional ANSI color.
 
         Parameters
         ----------
@@ -194,10 +196,15 @@ class ScriptLogger:
         reset = [self.MESSAGES["reset"], self.MESSAGES["reset"]] if self.use_colors else ["", ""]
         colors = self.MESSAGES.get(msg_type, ["", ""])
         prefix = f"[{msg_type.upper()}]"
-        return f"{colors[0]}{prefix}{reset[0]} {colors[1]}{message}{reset[1]}" if self.use_colors else f"{prefix} {message}"
+        return (
+            f"{colors[0]}{prefix}{reset[0]} {colors[1]}{message}{reset[1]}"
+            if self.use_colors
+            else f"{prefix} {message}"
+        )
 
     def _get_output_stream(self, msg_type: str) -> TextIO:
-        """Return the appropriate output stream based on the message type and settings.
+        """
+        Return the appropriate output stream based on the message type and settings.
 
         Parameters
         ----------
@@ -243,7 +250,8 @@ class ScriptLogger:
         print(message, file=self._get_output_stream("plain"))
 
     def set_use_colors(self, enable: bool) -> None:
-        """Enable or disable ANSI colors in the output.
+        """
+        Enable or disable ANSI colors in the output.
 
         Parameters
         ----------
@@ -253,7 +261,8 @@ class ScriptLogger:
         self.use_colors = enable
 
     def set_use_stderr(self, enable: bool) -> None:
-        """Enable or disable stderr redirection for errors and warnings.
+        """
+        Enable or disable stderr redirection for errors and warnings.
 
         Parameters
         ----------
@@ -263,7 +272,8 @@ class ScriptLogger:
         self.use_stderr = enable
 
     def _handle_color(self, iter_color: tuple | list | str) -> str | tuple[str, str]:
-        """Handle and sanitize a color parameter.
+        """
+        Handle and sanitize a color parameter.
 
         Check a color given parameter, if it is either a list or tuple, with elements being strings
         between the allowed ones (color names from 'self.ansi_dicts').
@@ -302,9 +312,14 @@ class ScriptLogger:
         return f"{converted_bg}{self.ansi_dicts[iter_color[1]]}"
 
     def print_col(
-        self, text: str, color: LoggerColors = None, left_prefix: str = "", right_prefix: str = ""
+        self,
+        text: str,
+        color: LoggerColors = None,
+        left_prefix: str = "",
+        right_prefix: str = "",
     ):
-        """Print a given text, including the given colors.
+        """
+        Print a given text, including the given colors.
 
         The color can be a color name string, matching any `self.ansi_dicts` keys color name;
         can be a iterable list or element, with values matching the same the previous keys one,
@@ -358,7 +373,8 @@ class ScriptLogger:
         color: LoggerColors = None,
         style: Literal["double", "single"] = "double",
     ):
-        """Print a line, that may be the union of different chars, like "-", defined by the param.
+        """
+        Print a line, that may be the union of different chars, like "-", defined by the param.
 
         Parameters
         ----------
@@ -389,7 +405,8 @@ class ScriptLogger:
         color: LoggerColors,
         *args: LoggerArgs,
     ):
-        """Print a section start/header, that may consist of the title, and and optional line.
+        """
+        Print a section start/header, that may consist of the title, and and optional line.
 
         Parameters
         ----------
@@ -403,18 +420,24 @@ class ScriptLogger:
             if isinstance(color, (tuple, list)) and len(color) >= 2:
                 color = color[0]
             self.print_line(
-                text, color, next((n for n in args if n in ["simple", "double"]), "simple")
+                text,
+                color,
+                next(
+                    (n for n in args if n in ["simple", "double"]),
+                    "simple",
+                ),
             )
 
     def print_same_line(
         self,
         text: str | tuple[str] | list[str],
-        color: list[LoggerColors] | tuple[LoggerColors] | str = None,
+        color: list[LoggerColors] | tuple[LoggerColors] | str,
         separator: str = "",
         left_prefix: str = "",
         right_prefix: str = "",
     ):
-        """Print multiple given strings, in the same line.
+        """
+        Print multiple given strings, in the same line.
 
         Parameters
         ----------
@@ -437,7 +460,7 @@ class ScriptLogger:
             color = [
                 color,
             ]
-        if color is None:
+        if not color:
             color = ["text"] * len(text)
         if len(color) < len(text):
             color.extend(["text"] * (len(text) - len(color)))
@@ -465,8 +488,8 @@ class ScriptLogger:
         )
 
     def handle_input(
-        self, text: tuple | list | str, colors: tuple | list | str, separator: str = ""
-    ):
+        self, text: tuple | list | str, colors: tuple | list | str, separator: str = "",
+    ) -> str:
         """Handle user input prompts instances."""
         if isinstance(text, str):
             text = [
@@ -495,10 +518,10 @@ class ScriptLogger:
         except (AssertionError, TypeError, ValueError) as e:
             print(f"Error printing with logger to the same line: {e}")
 
-        input_cmd = input(prompt=result_str)
+        input_cmd = input(f"{result_str}: ")
 
         return input_cmd
 
 
 LOGGER = ScriptLogger()
-__all__ = LOGGER
+__all__ = ["LOGGER"]

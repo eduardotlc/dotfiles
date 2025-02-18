@@ -1,0 +1,88 @@
+site_name: Eduardotlc Dotfiles Python Utils
+theme:
+  name: material
+  logo: icons/dotfiles.svg
+  favicon: icons/favicons/dotfiles_128.ico
+  features:
+    - search.suggest
+    - search.highlight
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tracking
+    - content.code.annotate
+    - toc.integrate
+    - toc.follow
+    - navigation.path
+    - navigation.top
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: dudot-light
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: dudot-dark
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  custom_dir: docs/.overrides
+repo_url: https://github.com/eduardotlc/dotfiles
+repo_name: dotfiles
+site_author: Eduardotlc
+site_dir: docs/site
+site_description: An extremely fast Python linter and code formatter, written in Rust.
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - toc:
+      anchorlink: true
+      anchorlink_class: "toclink"
+  - pymdownx.snippets:
+  - pymdownx.magiclink:
+  - attr_list:
+  - md_in_html:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite:
+  - pymdownx.superfences:
+  - markdown.extensions.attr_list:
+  - pymdownx.keys:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - js/extra.js
+not_in_nav: |
+  /.jukit/*
+  /__pycache__/*
+extra:
+  analytics:
+    provider: fathom
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/eduardotlc
+    - icon: fontawesome/solid/envelope
+      link: mailto:eduardotcampos@hotmail.com
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/eduardotc
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+#edit_uri: edit/main/docs/

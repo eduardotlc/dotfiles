@@ -1,3 +1,20 @@
+#!/usr/bin/env python3
+"""
+Created on 2025-02-18 13:53:36.
+
+@author: eduardotc
+@email: eduardotcampos@hotmail.com
+
+Argparse core class handler for arguments parsing and checking.
+Checks if passed the numbner of passed arguments is matching the number of metavars, if not user is
+prompted to input a value to the flag, and also checks if the passed argument have the correct type,
+based on argtypes, and by `TEST_DICT` dictionary values, to each metavar key.
+
+In case the metavar is "metavar (Optional)" it assigns to metavar the value from `DEFAULT_DICT` in
+case it is not provided, while if it matches "metavar (Default: `value`)", it assigns the `value`
+format.
+"""
+
 import argparse
 import re
 
@@ -7,11 +24,13 @@ from logger import LOGGER
 TEST_DICT = {
     "left_icon": argtypes.check_existing_file,
     "right_text": argtypes.check_string,
-    "right_color": argtypes.check_color,
+    "right_color": argtypes.check_string,
     "output_svg": argtypes.check_string,
-    "left_color": argtypes.check_color,
+    "left_color": argtypes.check_string,
     "input_color": argtypes.check_color,
     "package_name": argtypes.check_existing_pypi_version,
+    "scale_factor": float,
+    "font_size": float,
 }
 
 DEFAULT_DICT = {
@@ -22,8 +41,9 @@ DEFAULT_DICT = {
 class ArgHandle(argparse.Action):
     """Custom argparse Action to handle argument parsing with validation and user prompting."""
 
-    def __call__(self, parser, namespace, values, option_string=None):
-        """Check every time is called, for the argparse specific argument, length and types.
+    def __call__(self, _: any, namespace: argparse.Namespace, values: any, __: any):
+        """
+        Check every time is called, for the argparse specific argument, length and types.
 
         Function to handle argparse arguments from a flag, in respect to the total number of args
         in this flag, checked based on this flag metavar, that should have the same length as the
@@ -57,15 +77,19 @@ class ArgHandle(argparse.Action):
             missing_arg = (
                 self.metavar[len(values)] if self.metavar else f"Argument {len(values) + 1}"
             )
-            missing_arg, optBool = self._handle_otional_params(missing_arg)
-            if not optBool:
+            missing_arg, opt_bool = self._handle_otional_params(missing_arg)
+            if not opt_bool:
                 if self.choices:
                     LOGGER.print_col(f"Choices: {' '.join(self.choices)}", "BLUE")
                 LOGGER.print_same_line(
-                    ["please provide a value for ", missing_arg, ": "], ["text", "yellow", "text"]
+                    ["please provide a value for ", missing_arg, ": "],
+                    ["text", "yellow", "text"],
                 )
                 new_value = input().strip()
-            test_value = self._convert_value(new_value, TEST_DICT, missing_arg)
+            else:
+                new_value = missing_arg
+
+            test_value = self._convert_value(missing_arg, new_value, TEST_DICT)
             if test_value != "repeat":
                 values.append(test_value)
 
@@ -77,7 +101,7 @@ class ArgHandle(argparse.Action):
 
         setattr(namespace, self.dest, values)
 
-    def _handle_multiple_optionals(self, values):
+    def _handle_multiple_optionals(self, values: list):
         """Check if any metavar matches "str (Multiple)", indicating it has multiple optionals."""
         try:
             matches = [m for m in self.metavar if re.search(r"^(\S*)\s\(Multiple\)", m)]
@@ -86,8 +110,9 @@ class ArgHandle(argparse.Action):
         except (TypeError, AttributeError, OSError):
             return
 
-    def _handle_otional_params(self, missing_arg):
-        """Handle arguments matching str (Optional) or str (default) pattern.
+    def _handle_otional_params(self, missing_arg: any) -> (any, bool):
+        """
+        Handle arguments matching str (Optional) or str (default) pattern.
 
         Parameters
         ----------
@@ -107,35 +132,37 @@ class ArgHandle(argparse.Action):
 
         """
         optional_match = re.search(r"^(\S*)\s\(Optional\)", missing_arg)
-        DEFAULT_MATCH = re.search(r"\(default:\s*([^)]*)\)", missing_arg)
+        default_match = re.search(r"\(default:\s*([^)]*)\)", missing_arg)
 
         if optional_match:
             new_value = DEFAULT_DICT.get(optional_match.group(1), None)
             return new_value, True
 
-        elif DEFAULT_MATCH:
-            new_value = DEFAULT_MATCH.group(1)
+        elif default_match:
+            new_value = default_match.group(1)
             return new_value, True
 
         return missing_arg, False
 
-    def _ensure_list(self, values):
+    def _ensure_list(self, values: any) -> list:
         """Ensure the values are in a list format."""
         return values if isinstance(values, list) else [values]
 
-    def _convert_value(self, value, TEST_DICT, metavar_key):
+    def _convert_value(self, metavar_key: str, value: any, types_dict: dict = TEST_DICT) -> any:
         """Convert and validate an input value based on its expected type."""
         try:
-            return TEST_DICT[metavar_key](value) if metavar_key in TEST_DICT else self.type(value)
+            return types_dict[metavar_key](value) if metavar_key in types_dict else self.type(value)
         except ValueError:
             print(
-                f"Invalid value. Expected a {metavar_key or self.type.__name__}. Please try again."
+                f"Invalid value. Expected a {metavar_key or self.type.__name__}. Please try again.",
             )
             return self._convert_value(
-                input(f"Provide a value for {metavar_key}: ").strip(), TEST_DICT, metavar_key
+                input(f"Provide a value for {metavar_key}: ").strip(),
+                types_dict,
+                metavar_key,
             )
 
-    def _handle_repeat(self, value, test_type, metavar_key):
+    def _handle_repeat(self, value: any, test_type: argtypes, metavar_key: str) -> any:
         """Handle cases where the user inputs 'repeat'."""
         value = test_type(value)
         while value == "repeat":
@@ -144,11 +171,10 @@ class ArgHandle(argparse.Action):
                 assert test_type(new_value) != "repeat"
                 return test_type(new_value)
             except (AssertionError, ValueError):
-                print(
-                    f"Invalid value. Expected {metavar_key or self.type.__name__}. Please try again."
-                )
+                err = f"Expected {metavar_key or self.type.__name__}. Please try again."
+                LOGGER.error(err)
         return value
 
 
 HANDLER = ArgHandle
-__all__ = [HANDLER]
+__all__ = ["HANDLER"]
