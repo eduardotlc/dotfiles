@@ -1,0 +1,117 @@
+:root {
+  --black: #3f3f3f;
+  --white: #e2eeec;
+  --pgreen: #73be9c;
+  --flare: #ae92e8;
+  --salmon: #d5aa9d;
+  --galaxy: #261230;
+  --space: #30173d;
+  --ruby: #ce5265;
+  --sun: #cec77c;
+  --electron: #46ebe1;
+  --aurora: #46eb74;
+  --constellation: #5f6de9;
+  --neutron: #cff3cf;
+  --proton: #f6afbc;
+  --nebula: #cdcbfb;
+  --supernova: #f1aff6;
+  --starlight: #f4f4f1;
+  --lunar: #fbf2fc;
+  --asteroid: #e3cee3;
+  --crater: #f0dfdf;
+  --shutdown: #3d343b;
+  --sky: #9baaff;
+}
+
+[data-md-color-scheme="dudot-light"] {
+  --md-default-bg-color--dark: var(--black);
+  --md-primary-fg-color: var(--galaxy);
+  --md-typeset-a-color: var(--flare);
+  --md-accent-fg-color: var(--ruby);
+}
+
+[data-md-color-scheme="dudot-dark"] {
+  --md-default-bg-color: var(--galaxy);
+  --md-default-fg-color: var(--white);
+  --md-default-fg-color--light: var(--white);
+  --md-default-fg-color--lighter: var(--white);
+  --md-primary-fg-color: var(--space);
+  --md-primary-bg-color: var(--white);
+  --md-accent-fg-color: var(--ruby);
+
+  --md-typeset-color: var(--white);
+  --md-typeset-a-color: var(--pgreen);
+  --md-typeset-mark-color: var(--electron);
+
+  --md-code-fg-color: var(--sky);
+  --md-code-bg-color: var(--shutdown);
+
+  --md-code-hl-comment-color: var(--asteroid);
+  --md-code-hl-punctuation-color: var(--asteroid);
+  --md-code-hl-generic-color: var(--supernova);
+  --md-code-hl-variable-color: var(--starlight);
+  --md-code-hl-string-color: var(--pgreen);
+  --md-code-hl-keyword-color: var(--supernova);
+  --md-code-hl-operator-color: var(--supernova);
+  --md-code-hl-number-color: var(--electron);
+  --md-code-hl-special-color: var(--electron);
+  --md-code-hl-function-color: var(--neutron);
+  --md-code-hl-constant-color: var(--constellation);
+  --md-code-hl-name-color: var(--md-code-fg-color);
+
+  --md-typeset-del-color: hsla(6, 90%, 60%, 0.15);
+  --md-typeset-ins-color: hsla(150, 90%, 44%, 0.15);
+
+  --md-typeset-table-color: hsla(0, 0%, 100%, 0.12);
+  --md-typeset-table-color--light: hsla(0, 0%, 100%, 0.035);
+}
+
+[data-md-color-scheme="dudot-light"] img[src$="#only-dark"],
+[data-md-color-scheme="dudot-light"] img[src$="#gh-dark-mode-only"] {
+  display: none;
+}
+
+[data-md-color-scheme="dudot-light"] img[src$="#only-light"],
+[data-md-color-scheme="dudot-light"] img[src$="#gh-light-mode-only"] {
+  display: inline;
+}
+
+[data-md-color-scheme="dudot-dark"] img[src$="#only-light"],
+[data-md-color-scheme="dudot-dark"] img[src$="#gh-light-mode-only"] {
+  display: none;
+}
+
+[data-md-color-scheme="dudot-dark"] img[src$="#only-dark"],
+[data-md-color-scheme="dudot-dark"] img[src$="#gh-dark-mode-only"] {
+  display: inline;
+}
+
+.md-typeset__table {
+  min-width: 100%;
+}
+
+.md-typeset table:not([class]) {
+  display: table;
+}
+
+[data-md-color-scheme="dudot-dark"] details summary a {
+  color: var(--flare);
+}
+
+[data-md-color-scheme="dudot-dark"] div.admonition {
+  color: var(--md-code-fg-color);
+  background-color: var(--md-code-bg-color);
+}
+
+.highlight .gp,
+.highlight .go {
+  user-select: none;
+}
+
+.toclink {
+  color: unset !important;
+}
+
+.toclink:hover {
+  color: var(--md-accent-fg-color) !important;
+}

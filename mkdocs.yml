@@ -35,7 +35,7 @@ theme:
 repo_url: https://github.com/eduardotlc/dotfiles
 repo_name: dotfiles
 site_author: Eduardotlc
-site_dir: docs/site
+site_dir: site
 site_description: An extremely fast Python linter and code formatter, written in Rust.
 markdown_extensions:
   - admonition
