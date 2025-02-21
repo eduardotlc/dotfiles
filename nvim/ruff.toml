@@ -1,0 +1,117 @@
+builtins = ["_"]
+cache-dir = "~/.cache/ruff"
+indent-width = 4
+fix = true
+show-fixes = true
+src = ["src", "test"]
+unsafe-fixes = true
+preview = true
+
+[format]
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = 100
+indent-style = "space"
+quote-style = "double"
+preview = true
+skip-magic-trailing-comma = false
+
+[lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = true
+parametrize-names-type = "tuple"
+parametrize-values-row-type = "tuple"
+parametrize-values-type = "tuple"
+raises-extend-require-match-for = ["requests.RequestException"]
+raises-require-match-for = ["requests.RequestException"]
+
+[lint.flake8-quotes]
+avoid-escape = true
+docstring-quotes = "double"
+inline-quotes = "double"
+multiline-quotes = "double"
+
+[lint.flake8-annotations]
+suppress-none-returning = true
+
+[lint.flake8-boolean-trap]
+extend-allowed-calls = ["pydantic.Field", "django.db.models.Value"]
+
+[lint.flake8-type-checking]
+exempt-modules = ["typing", "typing_extensions", "collections", "pandas"]
+quote-annotations = true
+runtime-evaluated-base-classes = ["pydantic.BaseModel", "sqlalchemy.orm.DeclarativeBase"]
+runtime-evaluated-decorators = ["pydantic.validate_call", "attrs.define"]
+strict = false
+
+[lint.flake8-builtins]
+builtins-allowed-modules = ["_actions", "parser._actions", "argparse.ArgumentParser._actions"]
+
+[lint.isort]
+combine-as-imports = false
+default-section = "third-party"
+case-sensitive = true
+force-single-line = false
+force-sort-within-sections = false
+force-wrap-aliases = false
+from-first = false
+detect-same-package = true
+forced-separate = ["tests"]
+lines-after-imports = -1
+lines-between-types = 0
+no-sections = false
+no-lines-before = ["future", "standard-library"]
+force-to-top = ["src"]
+order-by-type = true
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+    "testing",
+]
+split-on-trailing-comma = true
+
+[lint.isort.sections]
+"testing" = ["pytest", "interrogate", "hypothesis"]
+
+[lint.pep8-naming]
+classmethod-decorators = [
+    "pydantic.validator",
+    "declared_attr",
+    "expression",
+    "comparator",
+]
+ignore-names = [
+	"setUp",
+	"tearDown",
+	"setUpClass",
+	"tearDownClass",
+	"setUpModule",
+	"tearDownModule",
+	"asyncSetUp",
+	"asyncTearDown",
+	"setUpTestData",
+	"failureException",
+	"longMessage",
+	"maxDiff"
+]
+
+[lint.mccabe]
+max-complexity = 15
+
+
+[lint.pycodestyle]
+max-line-length = 100
+ignore-overlong-task-comments = true
+
+[lint.pydocstyle]
+convention = "numpy"
+property-decorators = ["gi.repository.GObject.Property"]
+
+[lint.pylint]
+max-args = 10
+max-bool-expr = 5
+max-positional-args = 5
+max-returns = 6

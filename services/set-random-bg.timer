@@ -1,0 +1,10 @@
+[Unit]
+Description=Runs set-random-bg.service every 30 minutes
+
+[Timer]
+OnBootSec=30min
+OnUnitActiveSec=30min
+Unit=set-random-bg.service
+
+[Install]
+WantedBy=default.target

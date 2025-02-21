@@ -1,0 +1,17 @@
+[Unit]
+Description=Run ckb-next in the background
+After=default.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ckb-next --background
+Environment=QT_QPA_PLATFORM=xcb
+Restart=always
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=default.target
+
+;Restart=on-failure
+;After=graphical-session.target

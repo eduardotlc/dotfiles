@@ -1,0 +1,14 @@
+[Unit]
+Description=Local Homepage html/js server deployment, trough npm live-server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/eduardotc/.config/systemd/user/homepage
+ExecStart=live-server --port=8001 --host=127.0.0.1 --open=/home/eduardotc/.config/systemd/user/homepage .
+Restart=always
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=default.target

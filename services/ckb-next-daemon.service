@@ -1,0 +1,12 @@
+[Unit]
+Description=Corsair Keyboards and Mice Daemon
+
+[Service]
+type=simple
+ExecStart=sudo /usr/local/bin/ckb-next-daemon
+Restart=on-failure
+RestartSec=10
+KillMode=process
+
+[Install]
+WantedBy=default.target

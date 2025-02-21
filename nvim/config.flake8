@@ -1,0 +1,14 @@
+[flake8]
+exclude = .bzr,.direnv,.eggs,.git,.git-rewrite,.hg,.ipynb_checkpoints,.mypy_cache,.nox,.pants.d,.pyenv,.jukit,.pytest_cache,.pytype,.ruff_cache .svn,.tox,.venv,.vscode,__pypackages__,_build,buck-out,build,dist,node_modules,site-packages,venv
+select = E,F,UP,B,SIM,I,Q,D
+ignore = ANN,E203
+extend-ignore = E203
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist
+max-complexity = 15
+format = False
+max-line-length = 100
+max-doc-length = 100
+indent-size = 4
+statistics = True
+require-plugins = flake8-typing-extensions
+doctest = True

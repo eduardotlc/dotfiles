@@ -1,0 +1,6 @@
+[Unit]
+Description=Set a random GNOME desktop background
+
+[Service]
+Type=oneshot
+ExecStart=/home/eduardotc/bin/set_random_bg.sh

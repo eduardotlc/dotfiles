@@ -1,0 +1,13 @@
+**/.jukit
+.jukit
+**/__pycache__
+__pycache__
+**/.mypy_cache
+.mypy_cache
+**/.pytest_cache
+.pytest_cache
+.benchmarks
+**/.benchmarks
+.ropeproject
+**/.ropeproject
+ignore

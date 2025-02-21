@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Homepage</title>
+    <link rel="stylesheet" href="/static/stylesheet.css">
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="clock" id="clock"></div>
+
+        <div class="shortcuts">
+            <a href="https://www.reddit.com" class="shortcut">
+				<img src="/static/img/reddit.svg" alt="Reddit">
+                <div>Reddit</div>
+            </a>
+            <a href="about:networking#networkid" class="shortcut">
+				<img src="/static/img/network.svg" alt="Network">
+                <div>Network</div>
+            </a>
+            <a href="https://researchgate.net" class="shortcut">
+				<img src="/static/img/researchgate.svg"alt="ResearchGate">
+                <div>ResearchGate</div>
+            </a>
+            <a href="https://scholar.google.com/" class="shortcut">
+				<img src="/static/img/scholar.svg" alt="Scholar">
+                <div>Scholar</div>
+            </a>
+            <a href="https://www.researcher-app.com/" class="shortcut">
+				<img src="/static/img/researcher.svg" alt="Researcher">
+                <div>Researcher</div>
+            </a>
+        </div>
+
+        <div class="shortcuts-row">
+            <a href="http://127.0.0.1:8482" class="shortcut">
+				<img src="/static/img/document.svg" alt="Documentation">
+                <div>Documentation</div>
+            </a>
+            <a href="https://www.github.com" class="shortcut">
+				<img src="/static/img/github.svg" alt="Github">
+                <div>Github</div>
+            </a>
+            <a href="https://www.youtube.com" class="shortcut">
+				<img src="/static/img/youtube.svg" alt="Youtube">
+                <div>Youtube</div>
+            </a>
+            <a href="http://localhost:8666/device_dps.html?id=eb1ccfb0e1ceb0292dv6sr" class="shortcut">
+				<img src="/static/img/tuya.svg" alt="Tuya">
+                <div>Tuya</div>
+            </a>
+            <a href="https://chat.openai.com/" class="shortcut">
+				<img src="/static/img/openai.svg" alt="OpenAI">
+                <div>OpenAI</div>
+            </a>
+            <a href="https://www.zotero.org/eduardotc/library" class="shortcut">
+				<img src="/static/img/zotero.svg" alt="Zotero">
+                <div>Zotero</div>
+            </a>
+        </div>
+
+        <div class="random_quote" id="random_quote"></div>
+
+        <div class="topbar" id="topbar">
+            <a>
+                <input type="range" min="10" max="1000" value="localStorage.getItem('brightness')" class="slider" id="myRange">
+                <p class="slider-value"><span id="demo"></span></p>
+            </a>
+            <a>
+                <button id="svgButton" onclick="toggleIcon()">
+					<img src="/static/img/lightbulb.svg" alt="Lightbulb">
+                </button>
+            </a>
+        </div>
+
+        <div class="rightbar" id="rightbar">
+            <button id="feedButton" onclick="toggleFeedContent()">
+				<img src="/static/img/feed.svg" alt="Feed">
+            </button>
+        </div>
+
+        <div>
+            <span class="rssFeed" id="rssFeed"></span>
+        </div>
+
+        <!-- 📖 Reader Mode Section -->
+        <div class="reader-container">
+			<h2>Reader Mode</h2>
+            <input type="text" id="readerUrl" placeholder="Enter URL for Reader Mode">
+            <button onclick="loadReaderMode()">Read</button>
+            <div id="readerContent"></div>
+        </div>
+    </div>
+
+
+    <script src="/static/basics.js"></script>
+    <script src="/statis/quotes.js" onload="displayRandomQuote()"></script>
+    <script src="/static/after.js" onload="initFunctions()"></script>
+	<script src="/static/reader_mode.js"></scripts>
+ </body>
+</html>
