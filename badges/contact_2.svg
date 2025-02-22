@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" width="152" height="29.9" fill="none" version="1.1" id="svg3" sodipodi:docname="template.svg" inkscape:export-xdpi="96" inkscape:export-ydpi="96" inkscape:export-filename="templaten.svg">
+  <defs id="defs3">
+    <rect x="59.31493" y="3.9855883" width="94.481888" height="25.789101" id="rect6"/>
+  </defs>
+  <rect style="opacity:0.9333333333333333;fill:#1840b2;fill-opacity:0.910035;stroke:none;stroke-opacity:1" id="R_RECT" width="107" height="29.9" x="44.954266" y="0.073215418"/>
+  <rect style="opacity:0.3333333333333333;fill:#a8a8a8;fill-opacity:1;stroke-width:1.00081" id="L_RECT" width="45.099998" height="29.9" x="6.018908e-09" y="0.012561777"/>
+<g transform="translate(9.094999006018908,1.5075617769999992) scale(0.1051171875)"><svg xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+
+<defs>
+</defs>
+<g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+	<circle cx="45" cy="45" r="45" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(24,64,178); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
+	<path d="M 45 42.66 l 22.511 -7.647 v -3.028 c 0 -1.8 -1.46 -3.26 -3.26 -3.26 H 25.749 c -1.8 0 -3.26 1.46 -3.26 3.26 v 3.028 L 45 42.66 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+	<path d="M 45 47.34 l -22.511 -7.647 v 18.323 c 0 1.8 1.46 3.26 3.26 3.26 h 38.501 c 1.8 0 3.26 -1.46 3.26 -3.26 V 39.692 L 45 47.34 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+</g>
+</svg></g><text x="98.45426599999999" y="15.810057523263158" style="font-size:22.0px;text-anchor:middle;dominant-baseline:middle;fill:#FFFFFF;">Contact</text></svg>
