@@ -3,8 +3,8 @@
   <defs id="defs3">
     <rect x="59.31493" y="3.9855883" width="94.481888" height="25.789101" id="rect6"/>
   </defs>
-  <rect style="opacity:0.9333333333333333;fill:#9c0000;fill-opacity:0.910035;stroke:none;stroke-opacity:1" id="R_RECT" width="107" height="29.9" x="44.954266" y="0.073215418"/>
-  <rect style="opacity:0.3333333333333333;fill:#a8a8a8;fill-opacity:1;stroke-width:1.00081" id="L_RECT" width="45.099998" height="29.9" x="6.018908e-09" y="0.012561777"/>
+  <rect style="opacity:0.8;fill:#d12d3d;fill-opacity:0.910035;stroke:none;stroke-opacity:1" id="R_RECT" width="107" height="29.9" x="44.954266" y="0.073215418"/>
+  <rect style="opacity:0.8;fill:#646464;fill-opacity:1;stroke-width:1.00081" id="L_RECT" width="45.099998" height="29.9" x="6.018908e-09" y="0.012561777"/>
 <g transform="translate(10.589999006018907,3.0025617769999986) scale(0.0934375)"><svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="256" height="256" id="svg2" version="1.1" inkscape:version="0.47 r22583" sodipodi:docname="New document 1">
   <defs id="defs4">
     <inkscape:perspective sodipodi:type="inkscape:persp3d" inkscape:vp_x="0 : 526.18109 : 1" inkscape:vp_y="0 : 1000 : 0" inkscape:vp_z="744.09448 : 526.18109 : 1" inkscape:persp3d-origin="372.04724 : 350.78739 : 1" id="perspective10"/>
@@ -32,4 +32,4 @@
       <path transform="translate(0,796.36218)" id="path3674" d="m 141.78571,129.39286 0,51.78571" style="fill:none;stroke:#7c7d7e;stroke-width:14.1879797;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"/>
     </g>
   </g>
-</svg></g><text x="98.45426599999999" y="15.810057523263158" style="font-size:22.0px;text-anchor:middle;dominant-baseline:middle;fill:#FFFFFF;">License</text></svg>
+</svg></g><text x="98.45426599999999" y="17.158929703714286" style="font-size:19px;text-anchor:middle;dominant-baseline:middle;fill:#FFFFFF;">License</text></svg>

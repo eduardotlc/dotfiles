@@ -12,6 +12,12 @@ Used to run the module by the command
 .. code-block::
    :caption: Main module terminal execution
        python main.py [FLAGS] [FLAGS_VALUES]
+
+   :caption: Mit license badge generation example
+       python main.py --generate-badge ../badges/mit.svg "License" "#d12d3dcc" mit.svg "#646464cc"
+
+   :caption: Github last updated with current month generation example
+       python main.py --generate-updated-badge
 """
 
 import sys

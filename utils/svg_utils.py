@@ -8,8 +8,10 @@ Created on 2025-02-17 09:40:22.
 Image handling utillities for personal module.
 """
 
-import lxml.etree as et
+import datetime
+
 from logger import LOGGER
+import lxml.etree as et
 
 
 def get_contrast_color(hex_color: str) -> str:
@@ -49,6 +51,7 @@ def modify_template_svg(
     scale_factor: float = 0.8,
     font_size: float = 19,
     text_align: float = 1.75,
+    color_icon: bool = False,
 ):
     """
     Modify a template badge svg, defining a new icon on it, a color, and output path of it.
@@ -79,6 +82,7 @@ def modify_template_svg(
         Alignment of the text on the right rectangle, theorically 2 would center the text on the
         center of the rectangle, but for larger text values, it need slightly lower values to make
         it centered (thats why is defaulted to 1.75).
+    color_icon : bool, default False
     """
     opacity_l = None
     opacity_r = None
@@ -141,6 +145,13 @@ def modify_template_svg(
     icon_width = float(icon_root.attrib.get("width", left_width).rstrip("px"))
     icon_height = float(icon_root.attrib.get("height", left_height).rstrip("px"))
 
+    if color_icon:
+        try:
+            path = icon_root.find("{http://www.w3.org/2000/svg}path")
+            path.set("fill", right_color)
+        except AttributeError:
+            LOGGER.error("Could not color given icon svg.")
+
     scale_w = (scale_factor * left_width) / icon_width
     scale_h = (scale_factor * left_height) / icon_height
     scale = min(scale_w, scale_h)
@@ -184,3 +195,19 @@ def generate_pypi_badge(package_version: str, output_badge: str):
         new_text=f"V.{package_version}",
     )
     LOGGER.success(f"SVG updated with latest {package_version} version:")
+
+
+def generate_updated_badge():
+    """Generate updated badge with current month."""
+    current_date = datetime.datetime.now()
+    abbrev_month = current_date.strftime("%b")
+    last_two_year = current_date.strftime("%y")
+    result = f"{abbrev_month} {last_two_year}"
+    modify_template_svg(
+        left_color="#646464cc",
+        right_color="#737be6cc",
+        left_icon="../badges/github.svg",
+        right_text=result,
+        output_path=f"../badges/{result.replace(' ', '_')}.svg",
+        color_icon=True,
+    )

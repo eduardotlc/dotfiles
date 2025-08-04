@@ -16,7 +16,7 @@ import argparse
 import argtypes
 from handler import ArgHandle
 from logger import LOGGER
-from svg_utils import modify_template_svg
+from svg_utils import modify_template_svg, generate_updated_badge
 
 # >> CLI FUNCTIONS
 
@@ -156,7 +156,7 @@ def cli_group_images(group_images: argparse._ArgumentGroup):
     group_images.add_argument(
         "--generate-badge",
         nargs="*",
-        metavar=["left_icon", "right_text", "right_color", "output_svg", "left_color (Optional)"],
+        metavar=["left_icon", "right_text", "right_color", "output_svg", "left_color"],
         action=ArgHandle,
         type=argtypes.check_any,
         help="""
@@ -206,6 +206,18 @@ def cli_group_images(group_images: argparse._ArgumentGroup):
         to other commands, like for example --generate-badge, to indicate the right rectangle text
         size. Defaults to 19px.
         """,
+    )
+
+    group_images.add_argument(
+        "--generate-updated-badge",
+        action="store_true",
+        help="Generate github current date updated badge.",
+    )
+
+    group_images.add_argument(
+        "--color-icon",
+        action="store_true",
+        help="Color icon with same color as right rectangle.",
     )
 
     group_images.add_argument(
@@ -261,7 +273,6 @@ def cli_args_images(args: argparse.Namespace) -> argparse.Namespace:
     font_size = 19 if args.font_size is None else args.font_size[0]
     scale_factor = 0.8 if args.scale is None else args.scale[0]
     text_align = 1.75 if args.text_align is None else args.text_align[0]
-
     if args.generate_badge is not None:
         modify_template_svg(
             left_icon=args.generate_badge[0],
@@ -273,6 +284,7 @@ def cli_args_images(args: argparse.Namespace) -> argparse.Namespace:
             scale_factor=scale_factor,
             font_size=font_size,
             text_align=text_align,
+            color_icon=args.color_icon,
         )
 
     if args.generate_pypi_badge is not None:
@@ -283,5 +295,8 @@ def cli_args_images(args: argparse.Namespace) -> argparse.Namespace:
             right_color="#ffff00",
         )
         # print(args.generate_pypi_badge[0])
+
+    if args.generate_updated_badge:
+        generate_updated_badge()
 
     return args
