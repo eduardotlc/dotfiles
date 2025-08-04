@@ -1,0 +1,191 @@
+body {
+  --purple: #BD93F9;
+  --purple2: #8D93F9;
+  --cyan: #8BE9FD;
+  --bg: #282A36;
+  --current_line: #44475A;
+  --fg: #F8F8F2;
+  --comment: #6272A4;
+  --green: #50FA7B;
+  --orange: #FFB86C;
+  --pink: #FF79C6;
+  --yellow: #F1FA8C;
+  --transparent: rgba(0,0,0,0);
+  font-family: FiraCode Nerd Font Mono, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Instead of fixed height */
+  overflow-x: hidden; /* Allow vertical scroll, hide horizontal */
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.5);
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.random_quote {
+    position: relative;
+    background: none;
+    left: 87%;
+    transform: translateX(-50%);
+    z-index: 1;
+    height: 5%;
+}
+
+.random_quote h3 {
+    color: var(--pink);
+    background: var(--transparent);
+    font-size: 20px;
+}
+
+.random_quote h2 {
+    font-size: 26px;
+    color: var(--cyan);
+    background: var(--transparent);
+    width: 30%;
+    text-align: center;
+    transform: translateX(-50%);
+    margin-left: 300px;
+
+}
+
+.clock {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--purple);
+  font-size: 80px;
+  z-index: 1;
+}
+
+.shortcuts {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+  margin-top: 100px;
+  gap: 30px;
+  font-size: 17px;
+  z-index: 1;
+}
+
+.shortcut {
+  text-align: center;
+  color: white;
+  gap: 30px;
+  z-index: 2;
+}
+
+.shortcut img {
+  width: 60px;
+  height: 60px;
+  gap: 30px;
+  z-index: 2;
+}
+
+.shortcuts-row {
+  display: flex;
+  justify-content: center;
+  padding: 50px; /* Adjust spacing as needed */
+  margin-left: -50px;
+  gap: 30px;
+  font-size: 17px;
+  height: 80%;
+  z-index: 1;
+}
+
+.rss-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.rss-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.topbar {
+  position: absolute;
+  top: 10px;
+  left: 1%;
+  gap: 30px;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.topbar img {
+  width: 40px;
+  height: 40px;
+  gap: 30px;
+  padding: 10px;
+  z-index: 3;
+}
+
+.topbar button {
+  background-color: var(--comment);
+  border: var(--comment);
+  background: var(--comment);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.rightbar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: var(--cyan);
+  z-index: 4;
+}
+
+.rightbar img {
+  width: 50px;
+  height: 50px;
+  z-index: 4;
+}
+
+.rightbar button {
+    z-index: 6;
+}
+
+.weather-widget {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--current_line);
+  color: var(--fg);
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.weather-widget img {
+  width: 24px;
+  height: 24px;
+}
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notes Homepage</title>
+    <script src="{{ url_for('static', filename='notes.js') }}"></script>
+</head>
+<body>
+    <h1>Your Notes</h1>
+    <input type="text" id="noteInput" placeholder="Add a note">
+    <button onclick="saveNote()">Save Note</button>
+    <ul id="notesList">
+        {% for note in notes %}
+            <li>{{ note }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
